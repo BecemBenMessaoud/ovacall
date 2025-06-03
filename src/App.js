@@ -1,20 +1,17 @@
-import './App.css';
-import Hero from './components/hero/hero';
-import NAVBAR from './components/navigation/NAVBAR';
-import Slogon1 from './components/slogon1/Slogon1';
-import Slogon2 from './components/slogon2/Slogon2';
-import Slogon3 from './components/slogon3/Slogon3';
-import Slogon4 from './components/slogon4/Slogon4';
-import Slogon5 from './components/slogon5/Slogon5';
-import Slogon6 from './components/slogon6/Slogon6';
-import Slogon7 from './components/slogon7/Slogon7';
-import Slogon8 from './components/slogon8/Slogon8';
-import Slogon9 from './components/slogon9/Slogon9';
 
+import NAVBAR from './components/navigation/NAVBAR';
+import Solutions from './components/solutions/Solutions';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import Circle from './Styled';
-import { Container, Wrapper } from './components/slogon7/Slogon7.styled';
+import Services from './components/services/Services';
+import Process from './components/process/Process';
+import Chat from './components/chat/Chat';
+import Aboutus from './components/aboutus/Aboutus';
+import OnBoarding from './components/onboarding/Onboarding';
+import Contactus from './components/contactus/Contactus';
+import Blog from './components/blog/Blog';
+import Footer from './components/footer/Footer';
+import Homesection from './components/homesection/Homesection';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -39,17 +36,16 @@ function App() {
       {
         <>
           <NAVBAR isDesktopOrLaptop isBigScreen isTabletOrMobile />
-          <Hero />
-          <Slogon1 />
-
-          <Slogon2 isTabletOrMobile={isTabletOrMobile} />
-          <Slogon3 />
-          <Slogon4 />
-          <Slogon5 />
-          <Slogon6 />
-          <Slogon7 />
-          <Slogon8 />
-          <Slogon9 />
+          <Homesection />
+          <Solutions />
+          <Services isTabletOrMobile={isTabletOrMobile} />
+          <Process/>
+          <Chat />
+          <Aboutus />
+          <OnBoarding />
+          <Contactus/>
+          <Blog />
+          <Footer  />
         </>
       }
     </>

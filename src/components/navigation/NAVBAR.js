@@ -60,13 +60,13 @@ const NAVBAR = (props) => {
       >
         <ul className="flex flex-col lg:flex-row list-none items-center">
           {[
-            { label: 'Solutions', href: '#Hero' },
-            { label: 'Services', href: '#Formations' },
-            { label: 'Process', href: '#Formations' },
-            { label: 'About us', href: '#Formations' },
-            { label: 'OnBoarding', href: '#Contact' },
+            { label: 'Solutions', href: '#Solutions' },
+            { label: 'Services', href: '#Services' },
+            { label: 'Process', href: '#Process' },
+            { label: 'About us', href: '#Aboutus' },
+            { label: 'OnBoarding', href: '#OnBoarding' },
             { label: 'Contact', href: '#Contact' },
-            { label: 'Blog', href: '#Contact' },
+            { label: 'Blog', href: '#Blog' },
           ].map((item) => (
             <li className="textH inline-block relative" key={item.label}>
               <a
@@ -83,13 +83,24 @@ const NAVBAR = (props) => {
 
       {/* Call to Action Button */}
       <div className="hidden lg:flex items-center">
-        <a
-          className="bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-3 ease-linear transition-all duration-150"
-          href="https://connexion.pharmaforma.com"
-          onClick={() => setIsMobile(false)}
-        >
-          Book a call
-        </a>
+       <a
+  href="#Contact"
+  onClick={(e) => {
+    e.preventDefault();
+    setIsMobile(false);
+    const element = document.getElementById('Contact');
+    if (element) {
+      const yOffset = -80; // Adjust offset if needed
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }}
+  className="bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-3 ease-linear transition-all duration-150"
+>
+  Book a call
+</a>
+
       </div>
     </div>
   </nav>
