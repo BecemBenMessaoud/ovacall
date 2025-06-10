@@ -30,20 +30,41 @@ export const HeroContent = styled.div`
   text-align: center;
   padding: 0 20px;
 `;
-
 export const HeroTitle = styled.h1`
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 76px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  max-width: 733px;
+  margin: 2rem auto 0 auto; /* 👈 Ajout de margin-top */
+
   display: flex;
   flex-direction: column;
-  gap: 0rem; /* ↓ reduce this value to tighten spacing */
-  font-size: 3rem;
-  font-weight: bold;
-  color: white;
-  text-align: center;
+  gap: 0.3rem;
 
-  @media screen and (max-width: 500px) {
-    font-size: 2rem;
+  span {
+    display: block;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 48px;
+    line-height: 52px;
+    margin-top: 1.5rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 32px;
+    line-height: 38px;
+    margin-top: 1rem;
   }
 `;
+
+
+
 
 
 export const HeroButton = styled.a`
@@ -67,21 +88,46 @@ export const HeroSubtitle = styled.p`
   margin-top: 1.5rem;   /* 👈 pushes it down */
   margin-bottom: 2rem;
 `;
+export const HeroTopButtonStyled = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-export const HeroTopButton = styled.a`
-  display: inline-block;
- 
-  padding: 10px 10px; /* bigger padding */
-  background-color: rgba(101, 102, 102, 0.8); /* slightly transparent */
-  color: white;
-  font-weight: bold;
-  border-radius: 40px; /* softer round */
-  text-transform: uppercase;
-  font-size: 0.6rem; /* bigger font */
+  width: 237px;
+  height: 28px;
+  padding: 0 12px;
+
+  border-radius: 13.273px;
+  border: 0.498px solid #DEE5ED;
+  background: rgba(255, 255, 255, 0.20);
+
   text-decoration: none;
-  transition: background 0.3s ease;
+  color: #FFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 12px;
+  text-transform: uppercase;
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  .button-text {
+    flex: 1;
+    text-align: center;
+  }
 
   &:hover {
-    background-color: rgba(101, 102, 102, 1); /* fully opaque on hover */
+    background: rgba(255, 255, 255, 0.3);
   }
 `;
+
+
+

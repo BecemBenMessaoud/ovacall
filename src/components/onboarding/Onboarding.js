@@ -12,7 +12,7 @@ const OnBoarding = () => {
   return (
     <AttoUsContainer id="OnBoarding" className="bg-[#F6F9FC] py-50">
       <div className="bg-[#F6F9FC] py-12 px-8 lg:px-20" id="services">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Top Heading */}
           <a
             href="#"

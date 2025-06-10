@@ -13,6 +13,7 @@ import Blog from './components/blog/Blog';
 import Footer from './components/footer/Footer';
 import Homesection from './components/homesection/Homesection';
 
+
 function App() {
   const [loading, setLoading] = useState(true);
 
