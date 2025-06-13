@@ -1,34 +1,38 @@
 import React from 'react';
-
-const cards = [
-  {
-    id: 1,
-    image: require('../../assets/images/leftlogo.png'),
-    title: 'Tailored B2B solutions',
-    description: 'We design custom strategies aligned with your unique business goals, ensuring measurable results and lasting impact..'
-  },
-  {
-    id: 2,
-    image: require('../../assets/images/wallet.png'),
-    title: 'Multilingual Sales & Support',
-    description: 'Engage your customers in their preferred language, our team is fluent in English and French delivering support across markets..'
-  },
-  {
-    id: 3,
-    image: require('../../assets/images/people.png'),
-    title: 'Expert Agents, Ready to Go',
-    description: 'Our professional agents are fully trained and ready to integrate with your operations, extending your team’s capabilities..'
-  }
-];
+import { useTranslation } from 'react-i18next';
 
 const Solutions = () => {
+  const { t } = useTranslation();
+
+  const cards = [
+    {
+      id: 1,
+      image: require('../../assets/images/leftlogo.png'),
+      title: t('solutions.cards.tailoredB2B.title'),
+      description: t('solutions.cards.tailoredB2B.description'),
+    },
+    {
+      id: 2,
+      image: require('../../assets/images/wallet.png'),
+      title: t('solutions.cards.multilingualSupport.title'),
+      description: t('solutions.cards.multilingualSupport.description'),
+    },
+    {
+      id: 3,
+      image: require('../../assets/images/people.png'),
+      title: t('solutions.cards.expertAgents.title'),
+      description: t('solutions.cards.expertAgents.description'),
+    },
+  ];
+
   return (
-    <div id="Solutions" className="bg-white py-16">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Bouton "Solutions" avec SVG */}
+    <div id="Solutions" className="bg-white py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-28">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 xl:px-20">
+
+        {/* Button */}
         <a
           href="#"
-          className="inline-flex items-center gap-2 w-[160px] h-[40px] mb-4 px-4 py-2 rounded-[24px] border border-[#3289FF80] bg-[#E4EFFE] text-[#3289FF] text-[14px] font-semibold uppercase"
+          className="inline-flex items-center gap-2 w-fit mb-6 md:mb-8 px-4 py-2 rounded-full border border-[#3289FF80] bg-[#E4EFFE] text-[#3289FF] text-sm md:text-base font-semibold uppercase"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,39 +46,45 @@ const Solutions = () => {
               fill="#3289FF"
             />
           </svg>
-          <span>Solutions</span>
+          <span>{t('Solutions')}</span>
         </a>
 
-        <h2 className="text-[#191F34] font-inter text-[40px] font-semibold leading-[48px] mb-10">
-  What do we bring to your business
-</h2>
+        {/* Heading */}
+        <h2 className="text-[#191F34] font-inter font-semibold mb-8 text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-snug md:leading-tight">
+          {t('solutions.heading')}
+        </h2>
 
-
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 xl:gap-12">
           {cards.map((card) => (
             <div
               key={card.id}
-              className="bg-white border border-gray-200 rounded-2xl shadow-sm text-center hover:shadow-md transition duration-300 w-80 mx-auto"
+              className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition duration-300 w-full max-w-sm mx-auto"
             >
-              <div className="bg-[#F6F9FC] p-6 rounded-t-2xl">
+              {/* Image */}
+              <div className="bg-[#F6F9FC] p-5 md:p-6 xl:p-8 rounded-t-2xl">
                 <img
                   src={card.image}
                   alt={card.title}
-                  className="w-24 h-24 mx-auto object-contain"
+                  className="w-16 h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 mx-auto object-contain"
                 />
               </div>
 
               <div className="w-full h-px bg-gray-300" />
 
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              {/* Text */}
+              <div className="p-5 md:p-6 xl:p-8">
+                <h3 className="text-lg md:text-xl xl:text-2xl font-semibold text-gray-800 mb-2">
                   {card.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{card.description}</p>
+                <p className="text-gray-600 text-sm md:text-base xl:text-lg leading-relaxed">
+                  {card.description}
+                </p>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );

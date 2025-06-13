@@ -12,6 +12,7 @@ import Contactus from './components/contactus/Contactus';
 import Blog from './components/blog/Blog';
 import Footer from './components/footer/Footer';
 import Homesection from './components/homesection/Homesection';
+import './i18n';
 
 
 function App() {
@@ -45,7 +46,6 @@ function App() {
           <Aboutus />
           <OnBoarding />
           <Contactus/>
-          <Blog />
           <Footer  />
         </>
       }

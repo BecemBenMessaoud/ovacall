@@ -3,11 +3,12 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
-import phoneIcon from '../../assets/images/phone.png';
-import locationIcon from '../../assets/images/localisation.png';
+import { useTranslation } from 'react-i18next';
 import unionBg from '../../assets/images/Union.png';
 
 const Contactus = () => {
+  const { t, i18n } = useTranslation();
+
   useEffect(() => {
     AOS.init({ duration: 2000, easing: 'ease' });
   }, []);
@@ -17,7 +18,6 @@ const Contactus = () => {
   const [number, setNumber] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
-
   const [showCalendar, setShowCalendar] = useState(false);
   const [date, setDate] = useState(new Date());
   const [confirmedDate, setConfirmedDate] = useState(null);
@@ -40,10 +40,10 @@ const Contactus = () => {
   return (
     <div
       id="Contact"
-      className="relative flex items-center justify-center min-h-screen bg-[#191F34] bg-cover bg-center px-4 sm:px-6 lg:px-8"
+      className="relative flex items-center justify-center min-h-screen bg-[#191F34] bg-cover bg-center 
+                 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24"
       style={{ backgroundImage: `url(${unionBg})` }}
     >
-      {/* Overlay behind popup when calendar is open */}
       {showCalendar && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
@@ -51,178 +51,253 @@ const Contactus = () => {
         />
       )}
 
-      <div className="w-full max-w-7xl mx-auto py-12 grid gap-10 md:grid-cols-2 items-center" data-aos="fade-up">
-        {/* Left Side */}
-        <div className="space-y-8 z-50 relative">
+      <div
+        className="w-full max-w-7xl mx-auto py-8 sm:py-12 
+                   grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 
+                   items-center"
+        data-aos="fade-up"
+      >
+        {/* Left Side - Info Section */}
+        <div className="space-y-6 md:space-y-8 z-50 relative order-2 md:order-1">
           <a
-            href="#"
-            className="inline-block px-6 py-2 text-lg font-semibold text-blue-600 bg-blue-100 rounded-full hover:bg-blue-200 transition"
+            className="inline-flex items-center gap-2 bg-white text-primary font-semibold 
+                       px-3 py-2 sm:px-4 sm:py-2 rounded-full shadow hover:bg-gray-100 transition
+                       text-sm sm:text-base"
+            style={{
+              width: 'auto',
+              minWidth: '120px',
+              maxWidth: '145px',
+              height: '36px',
+              flexShrink: 0,
+              borderRadius: '24px',
+              border: '0.75px solid rgba(50, 137, 255, 0.5)',
+              background: '#E4EFFE',
+              color: '#3289FF',
+              fontFamily: 'Inter',
+              fontSize: 'clamp(14px, 2vw, 16px)',
+              fontWeight: 600,
+              lineHeight: '20px',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+            }}
           >
-            Contact
+            <span className="w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] flex-shrink-0">
+              {/* Contact SVG */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="100%"
+                height="100%"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M9.20866 12.4582L7.66699 13.9998C7.34199 14.3248 6.82533 14.3248 6.49199 14.0082C6.40033 13.9165 6.30866 13.8332 6.21699 13.7415C5.35866 12.8748 4.58366 11.9665 3.89199 11.0165C3.20866 10.0665 2.65866 9.1165 2.25866 8.17484C1.86699 7.22484 1.66699 6.3165 1.66699 5.44984C1.66699 4.88317 1.76699 4.3415 1.96699 3.8415C2.16699 3.33317 2.48366 2.8665 2.92533 2.44984C3.45866 1.92484 4.04199 1.6665 4.65866 1.6665C4.89199 1.6665 5.12533 1.7165 5.33366 1.8165C5.55033 1.9165 5.74199 2.0665 5.89199 2.28317L7.82533 5.00817C7.97533 5.2165 8.08366 5.40817 8.15866 5.5915C8.23366 5.7665 8.27533 5.9415 8.27533 6.09984C8.27533 6.29984 8.21699 6.49984 8.10033 6.6915C7.99199 6.88317 7.83366 7.08317 7.63366 7.28317L7.00033 7.9415C6.90866 8.03317 6.86699 8.1415 6.86699 8.27484C6.86699 8.3415 6.87533 8.39984 6.89199 8.4665C6.91699 8.53317 6.94199 8.58317 6.95866 8.63317C7.10866 8.90817 7.36699 9.2665 7.73366 9.69984C8.10866 10.1332 8.50866 10.5748 8.94199 11.0165C9.02532 11.0998 9.11699 11.1832 9.20033 11.2665C9.53366 11.5915 9.54199 12.1248 9.20866 12.4582Z"
+                  fill="#3289FF"
+                />
+                <path
+                  d="M18.3083 15.2752C18.3083 15.5085 18.2667 15.7502 18.1833 15.9835C18.1583 16.0502 18.1333 16.1169 18.1 16.1835C17.9583 16.4835 17.775 16.7669 17.5333 17.0335C17.125 17.4835 16.675 17.8085 16.1667 18.0169C16.1583 18.0169 16.15 18.0252 16.1417 18.0252C15.65 18.2252 15.1167 18.3335 14.5417 18.3335C13.6917 18.3335 12.7833 18.1335 11.825 17.7252C10.8667 17.3169 9.90833 16.7669 8.95833 16.0752C8.63333 15.8335 8.30833 15.5919 8 15.3335L10.725 12.6085C10.9583 12.7835 11.1667 12.9169 11.3417 13.0085C11.3833 13.0252 11.4333 13.0502 11.4917 13.0752C11.5583 13.1002 11.625 13.1085 11.7 13.1085C11.8417 13.1085 11.95 13.0585 12.0417 12.9669L12.675 12.3419C12.8833 12.1335 13.0833 11.9752 13.275 11.8752C13.4667 11.7585 13.6583 11.7002 13.8667 11.7002C14.025 11.7002 14.1917 11.7335 14.375 11.8085C14.5583 11.8835 14.75 11.9919 14.9583 12.1335L17.7167 14.0919C17.9333 14.2419 18.0833 14.4169 18.175 14.6252C18.2583 14.8335 18.3083 15.0419 18.3083 15.2752Z"
+                  fill="#3289FF"
+                />
+              </svg>
+            </span>
+            <span className="hidden sm:inline">{t('contact')}</span>
           </a>
-          <h1 className="text-3xl md:text-4xl font-bold text-white">
-            Ready to elevate your sales with Ovacall?
+
+          <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 
+                         font-bold text-white leading-tight">
+            {t('contact_heading')}
           </h1>
 
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <img src="/icons/email.png" alt="email" className="w-6 h-6 mt-1" />
-              <div>
-                <p className="text-xs text-gray-300 font-semibold uppercase">Email</p>
-                <p className="text-white text-base">contact@ovacall.com</p>
+          <div className="space-y-4 sm:space-y-6">
+            {/* Email */}
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-xs text-gray-300 font-semibold uppercase mb-1">
+                  {t('email')}
+                </p>
+                <p className="text-sm sm:text-base text-white break-words">
+                  contact@ovacall.com
+                </p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
-              <img src={phoneIcon} alt="phone" className="w-6 h-6 mt-1" />
-              <div>
-                <p className="text-xs text-gray-300 font-semibold uppercase">Call Us</p>
-                <p className="text-white text-base">+216 ********</p>
-                <p className="text-white text-base">+33 ********</p>
-                <p className="text-white text-base">+49 ********</p>
+            {/* Call Us */}
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3l2 5-2 1a16 16 0 006 6l1-2 5 2v3a2 2 0 01-2 2h-1C9.82 21 3 14.18 3 6V5z"
+                  />
+                </svg>
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-xs text-gray-300 font-semibold uppercase mb-1">
+                  {t('call_us')}
+                </p>
+                <div className="space-y-1">
+                  <p className="text-sm sm:text-base text-white break-words">+216 ********</p>
+                  <p className="text-sm sm:text-base text-white break-words">+33 ********</p>
+                  <p className="text-sm sm:text-base text-white break-words">+49 ********</p>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
-              <img src={locationIcon} alt="address" className="w-6 h-6 mt-1" />
-              <div>
-                <p className="text-xs text-gray-300 font-semibold uppercase">Address</p>
-                <p className="text-white text-base">
-                  Address road, Postal code, Region, Country
+            {/* Address */}
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 22s8-4.5 8-12a8 8 0 10-16 0c0 7.5 8 12 8 12z"
+                  />
+                </svg>
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-xs text-gray-300 font-semibold uppercase mb-1">
+                  {t('address')}
+                </p>
+                <p className="text-sm sm:text-base text-white break-words">
+                  {t('address_full')}
                 </p>
               </div>
             </div>
           </div>
 
-          <div>
-            <h2 className="text-xl md:text-2xl font-bold text-white mt-6">
-              Or you can book a free consultation session.
-            </h2>
-            <button
-              type="button"
-              onClick={() => setShowCalendar(true)}
-              className="mt-4 bg-white text-gray-900 hover:bg-gray-200 font-bold py-3 px-6 rounded-lg transition"
-            >
-              Schedule a free consultation
-            </button>
-
-            {confirmedDate && (
-              <p className="mt-4 text-white font-semibold">
-                Selected Date: {confirmedDate.toDateString()}
+          {confirmedDate && (
+            <div className="mt-4 p-3 bg-white/10 rounded-lg backdrop-blur-sm">
+              <p className="text-white font-semibold text-sm sm:text-base">
+                {t('selected_date')}: {confirmedDate.toDateString()}
               </p>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
-        {/* Right Side */}
-        <div className="bg-white shadow-lg rounded-xl p-8 w-full z-50 relative">
+        {/* Right Side - Form Section */}
+        <div className="bg-white shadow-lg rounded-xl p-4 sm:p-6 md:p-6 lg:p-8 xl:p-8 2xl:p-10 
+                        w-full z-50 relative max-w-full order-1 md:order-2">
           {submitted ? (
-            <div className="text-center">
-              <h1 className="text-3xl md:text-4xl text-gray-900 font-extrabold mb-2">
-                Merci
+            <div className="text-center px-2 sm:px-4 md:px-6 lg:px-8">
+              <h1 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl 
+                          ">
+                {t('thank_you')}
               </h1>
-              <p className="text-lg text-gray-700">
-                Nous serons bientôt en contact.
+              <p className="text-sm sm:text-base md:text-base lg:text-lg text-gray-700">
+                {t('we_will_contact')}
               </p>
             </div>
           ) : (
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="name" className="text-gray-700 font-semibold">Full Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Full Name"
-                  className="w-full mt-1 py-3 px-4 rounded-lg border border-gray-200 focus:border-blue-500 focus:outline-none"
+            <div className="mt-4 sm:mt-6 md:mt-8">
+              {i18n.language === 'fr' ? (
+                <iframe
+                  id="ovacall-en-sy9yow"
+                  src="https://opnform.com/forms/ovacall-en-sy9yow"
+                  style={{
+                    border: 'none',
+                    width: '100%',
+                    height: 'clamp(400px, 50vh, 600px)',
+                    maxHeight: '80vh',
+                    minHeight: '350px',
+                  }}
+                  title="Form FR"
                 />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="text-gray-700 font-semibold">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email"
-                  className="w-full mt-1 py-3 px-4 rounded-lg border border-gray-200 focus:border-blue-500 focus:outline-none"
+              ) : (
+                <iframe
+                  id="my-form-nf0mij"
+                  src="https://opnform.com/forms/my-form-nf0mij"
+                  style={{
+                    border: 'none',
+                    width: '100%',
+                    height: 'clamp(400px, 50vh, 600px)',
+                    maxHeight: '80vh',
+                    minHeight: '350px',
+                  }}
+                  title="Form EN"
                 />
-              </div>
-
-              <div>
-                <label htmlFor="tel" className="text-gray-700 font-semibold">Telephone Number</label>
-                <input
-                  type="tel"
-                  id="tel"
-                  onChange={(e) => setNumber(e.target.value)}
-                  placeholder="Telephone Number"
-                  className="w-full mt-1 py-3 px-4 rounded-lg border border-gray-200 focus:border-blue-500 focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="text-gray-700 font-semibold">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Subject"
-                  className="w-full mt-1 py-3 px-4 rounded-lg border border-gray-200 focus:border-blue-500 focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="text-gray-700 font-semibold">Message</label>
-                <textarea
-                  id="message"
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Message"
-                  rows="4"
-                  className="w-full mt-1 py-3 px-4 rounded-lg border border-gray-200 focus:border-blue-500 focus:outline-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-[#59ADFF] hover:bg-[#459be0] text-white font-bold py-3 px-6 rounded-lg transition"
-              >
-                Send your message
-              </button>
-            </form>
+              )}
+            </div>
           )}
         </div>
       </div>
 
-      {/* Calendar Popup */}
+      {/* Calendar Modal */}
       {showCalendar && (
         <div
-          className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-white rounded-xl shadow-2xl p-6 max-w-md w-full z-50"
+          className="fixed top-4 sm:top-10 md:top-20 left-1/2 transform -translate-x-1/2 
+                     bg-white rounded-xl shadow-2xl p-4 sm:p-6 
+                     max-w-xs sm:max-w-sm md:max-w-md w-[90%] sm:w-full z-50"
           onClick={(e) => e.stopPropagation()}
         >
-          <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
-            Select a Date
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 
+                         text-center text-gray-800">
+            {t('select_date')}
           </h2>
-          <Calendar
-            onChange={setDate}
-            value={date}
-            minDate={new Date()}
-            className="react-calendar"
-          />
-          <p className="mt-4 text-center text-gray-600 font-medium">
-            Selected date: <span className="text-blue-600">{date.toDateString()}</span>
+          <div className="calendar-container">
+            <Calendar
+              onChange={setDate}
+              value={date}
+              minDate={new Date()}
+              className="react-calendar w-full"
+            />
+          </div>
+          <p className="mt-3 sm:mt-4 text-center text-gray-600 font-medium text-sm sm:text-base">
+            {t('selected_date')}: 
+            <span className="text-blue-600 block sm:inline sm:ml-1">
+              {date.toDateString()}
+            </span>
           </p>
-          <div className="mt-6 flex justify-between gap-4">
+          <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-between gap-3 sm:gap-4">
             <button
               onClick={() => setShowCalendar(false)}
-              className="flex-1 bg-gray-300 text-gray-800 py-3 rounded-lg hover:bg-gray-400 transition font-semibold"
+              className="flex-1 bg-gray-300 text-gray-800 py-2 sm:py-3 rounded-lg 
+                         hover:bg-gray-400 transition font-semibold text-sm sm:text-base"
             >
-              Close
+              {t('close')}
             </button>
             <button
               onClick={handleConfirmDate}
-              className="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
+              className="flex-1 bg-blue-600 text-white py-2 sm:py-3 rounded-lg 
+                         hover:bg-blue-700 transition font-semibold text-sm sm:text-base"
             >
-              Confirm Date
+              {t('confirm')}
             </button>
           </div>
         </div>

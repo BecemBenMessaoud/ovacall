@@ -1,55 +1,67 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import Phone from '../../assets/images/asset1.webp';
 import Phone2 from '../../assets/images/Asset 2.png';
 import Phone3 from '../../assets/images/Asset 3.png';
-import Phone4 from '../../assets/images/asset4.webp'; // Remplace par tes images réelles
+import Phone4 from '../../assets/images/asset4.webp';
 import { BannerContainer } from './Services.styled';
 
-const TABS = [
-  {
-    title: 'Operational costs',
-    content: {
-      heading: 'Cut High Operational Costs',
-      description:
-        'Managing an in-house team means ongoing expenses, salaries, benefits, office space, and more. Ovacall delivers expert sales and support professionals at a fraction of the cost, helping you reduce overhead without sacrificing quality..',
-      image: Phone,
-    },
-  },
-  {
-    title: 'Team scaling',
-    content: {
-      heading: 'Staffing That Grows With You  ',
-      description:
-        'Managing an in-house team means ongoing expenses, salaries, benefits, office space, and more. Ovacall delivers expert sales and support professionals at a fraction of the cost, helping you reduce overhead without sacrificing quality.',
-      image: Phone2,
-    },
-  },
-  {
-    title: 'Customer service',
-    content: {
-      heading: 'Fix Inconsistent Customer Service',
-      description:
-        'Overwhelmed in-house teams can’t always keep up, causing slow responses and missed follow-ups. With Ovacall, every customer is met with prompt, professional care from agents trained to represent your brand at its best and convert unhappy customers into satisfied, loyal ones..',
-      image: Phone3,
-    },
-  },
-  {
-    title: 'Team recruiting',
-    content: {
-      heading: 'Preserve Resources Spent on Hiring & Training',
-      description:
-        'Recruiting and training quality agents is time-consuming and expensive? only to start over when turnover hits. Ovacall eliminates the hiring burden with a professional sales and support service that deliver the exact result you need from the get go..',
-      image: Phone4,
-    },
-  },
-];
-
 const Services = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(0);
+
+  const TABS = [
+    {
+      titleKey: 'services.tabs.operationalCosts.title',
+      content: {
+        headingKey: 'services.tabs.operationalCosts.heading',
+        descriptionKey: 'services.tabs.operationalCosts.description',
+        image: Phone,
+      },
+    },
+    {
+      titleKey: 'services.tabs.teamScaling.title',
+      content: {
+        headingKey: 'services.tabs.teamScaling.heading',
+        descriptionKey: 'services.tabs.teamScaling.description',
+        image: Phone2,
+      },
+    },
+    {
+      titleKey: 'services.tabs.customerService.title',
+      content: {
+        headingKey: 'services.tabs.customerService.heading',
+        descriptionKey: 'services.tabs.customerService.description',
+        image: Phone3,
+      },
+    },
+    {
+      titleKey: 'services.tabs.teamRecruiting.title',
+      content: {
+        headingKey: 'services.tabs.teamRecruiting.heading',
+        descriptionKey: 'services.tabs.teamRecruiting.description',
+        image: Phone4,
+      },
+    },
+  ];
 
   return (
     <BannerContainer id="Services" className="bg-white py-16">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="
+        mx-auto
+        px-4
+        sm:px-6
+        md:px-8
+        lg:px-12
+        xl:px-20
+        2xl:px-32
+        max-w-full
+        md:max-w-5xl
+        lg:max-w-6xl
+        xl:max-w-7xl
+        2xl:max-w-8xl
+      ">
         <a
           href="#"
           className="inline-flex items-center mb-3 px-4 py-1 text-[16px] font-semibold font-inter text-[#3289FF] uppercase leading-[20px] tracking-normal border border-blue-500/50 rounded-full bg-[#E4EFFE] hover:bg-blue-200 transition"
@@ -79,25 +91,24 @@ const Services = () => {
               fill="#3289FF"
             />
           </svg>
-          Services
+          {t('Services')}
         </a>
 
         <h2
-          className="mb-10"
+          className="mb-10 max-w-full md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
           style={{
             color: '#191F34',
             fontFamily: 'Inter, sans-serif',
             fontSize: '40px',
             fontWeight: 600,
             lineHeight: '48px',
-            maxWidth: '673px',
           }}
         >
-          How we help you overcome challenges
+          {t('services.heading')}
         </h2>
 
         {/* Tabs */}
-        <div className="flex justify-around border-b mb-8">
+        <div className="flex flex-wrap justify-around border-b mb-8 gap-4 md:gap-8">
           {TABS.map((tab, index) => (
             <button
               key={index}
@@ -105,7 +116,6 @@ const Services = () => {
               className="flex flex-col items-center px-4 py-2 focus:outline-none"
               style={{ flexShrink: 0 }}
             >
-              {/* Cercle noir avec numéro */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="28"
@@ -129,7 +139,6 @@ const Services = () => {
                 </text>
               </svg>
 
-              {/* Titre de l’onglet */}
               <span
                 style={{
                   color: activeTab === index ? '#191F34' : '#556680',
@@ -141,35 +150,38 @@ const Services = () => {
                   whiteSpace: 'nowrap',
                 }}
               >
-                {tab.title}
+                {t(tab.titleKey)}
               </span>
             </button>
           ))}
         </div>
 
-        {/* Contenu */}
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+        {/* Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <h3
+              className="mb-4"
               style={{
                 color: '#191F34',
                 fontFamily: 'Inter, sans-serif',
                 fontSize: '24px',
                 fontWeight: 600,
                 lineHeight: '32px',
-                width: '365px',
+                maxWidth: '365px',
               }}
-              className="mb-4"
             >
-              {TABS[activeTab].content.heading}
+              {t(TABS[activeTab].content.headingKey)}
             </h3>
-            <p className="text-gray-700 leading-relaxed">{TABS[activeTab].content.description}</p>
+            <p className="text-gray-700 leading-relaxed max-w-lg">
+              {t(TABS[activeTab].content.descriptionKey)}
+            </p>
           </div>
           <div className="flex justify-center">
             <img
               src={TABS[activeTab].content.image}
-              alt={TABS[activeTab].content.heading}
-              className="w-full max-w-md"
+              alt={t(TABS[activeTab].content.headingKey)}
+              className="w-full max-w-md object-contain"
+              style={{ maxHeight: '400px' }}
             />
           </div>
         </div>

@@ -69,7 +69,7 @@ export const HeroTitle = styled.h1`
 
 export const HeroButton = styled.a`
   margin-top: 20px;
-  background-color:rgb(243, 243, 248);
+  background-color: rgb(243, 243, 248);
   color: black;
   padding: 14px 30px;
   border-radius: 8px;
@@ -78,8 +78,11 @@ export const HeroButton = styled.a`
   text-decoration: none;
   transition: background-color 0.3s ease;
 
-  
+  &:hover {
+    background-color: rgb(220, 220, 230);
+  }
 `;
+
 export const HeroSubtitle = styled.p`
   font-size: 1.2rem;
   color: #f0f0f0;

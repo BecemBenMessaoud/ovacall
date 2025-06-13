@@ -1,95 +1,125 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import Logo from '../../assets/images/logo/Logo - Original.png';
 
-const NAVBAR = (props) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+const NAVBAR = () => {
+  const { t } = useTranslation();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const menuRef = useRef(null);
 
-  const changeBackground = () => {
-    setIsScrolled(window.scrollY >= 160);
-  };
-
+  // Close mobile menu on window resize if wider than lg breakpoint (1024px)
   useEffect(() => {
-    changeBackground();
-    window.addEventListener('scroll', changeBackground);
-    return () => window.removeEventListener('scroll', changeBackground);
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setIsMobileOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Close mobile menu if click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMobileOpen(false);
+      }
+    };
+    if (isMobileOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMobileOpen]);
+
+  const navItems = [
+    { label: t('navbar.solutions'), href: '#Solutions' },
+    { label: t('navbar.services'), href: '#Services' },
+    { label: t('navbar.process'), href: '#Process' },
+    { label: t('navbar.aboutUs'), href: '#Team' },
+    { label: t('navbar.onboarding'), href: '#OnBoarding' },
+    { label: t('navbar.contact'), href: '#Contact' },
+  ];
+
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    setIsMobileOpen(false);
+    const element = document.getElementById('Contact');
+    if (element) {
+      const yOffset = -80;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <nav className={`top-0 transition bg-gray-100 ease-in-out duration-100 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-2`}>
-      <div className="container mx-auto flex items-center justify-between">
+    <nav
+      className="fixed top-0 z-50 w-full bg-gray-100 shadow-md transition-colors duration-300 ease-in-out"
+    >
+      <div className="container mx-auto flex items-center justify-between px-4 lg:px-8 py-3 lg:py-4">
         {/* Logo */}
-        <div className="flex items-center relative left-[120px]">
-          <a
-            className="text-sm text-gray-800 font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-            href="#!"
-          >
-            <img
-              src={Logo}
-              className="h-10"
-              alt="Logo"
-            />
-          </a>
+        <a href="#!" className="flex items-center">
+          <img src={Logo} alt="Logo" className="h-10 lg:h-12" />
+        </a>
 
-          {/* Burger menu */}
-          <button
-            className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-            type="button"
-            onClick={() => setIsMobile(!isMobile)}
+        {/* Burger Menu Button */}
+        <button
+          aria-label="Toggle menu"
+          aria-expanded={isMobileOpen}
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          className="lg:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          {/* Hamburger icon */}
+          <svg
+            className="w-6 h-6 text-gray-800"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <i className={`${!isScrolled ? 'text-white' : 'text-gray-800'} fas fa-bars`}></i>
-          </button>
-        </div>
+            {isMobileOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
 
-        {/* Nav links */}
-        <div className={`lg:flex flex-grow items-center justify-center ${isMobile ? 'block' : 'hidden'}`} id="example-collapse-navbar">
-          <ul className="flex flex-col lg:flex-row list-none items-center">
-            {[
-              { label: 'Solutions', href: '#Solutions' },
-              { label: 'Services', href: '#Services' },
-              { label: 'Process', href: '#Process' },
-              { label: 'About us', href: '#Team' },
-              { label: 'OnBoarding', href: '#OnBoarding' },
-              { label: 'Contact', href: '#Contact' },
-              { label: 'Blog', href: '#Blog' },
-            ].map((item) => (
-              <li className="inline-block relative" key={item.label}>
+        {/* Navigation Links */}
+        <div
+          ref={menuRef}
+          className={`flex-col lg:flex lg:flex-row lg:items-center lg:justify-center absolute lg:static top-full left-0 w-full lg:w-auto bg-gray-100 lg:bg-transparent shadow-lg lg:shadow-none transform origin-top transition-transform duration-300 ease-in-out ${
+            isMobileOpen ? 'scale-y-100' : 'scale-y-0 lg:scale-y-100'
+          } lg:scale-y-100 lg:flex`}
+          style={{ transformOrigin: 'top' }}
+        >
+          <ul className="flex flex-col lg:flex-row list-none p-4 lg:p-0 gap-4 lg:gap-8">
+            {navItems.map(({ label, href }) => (
+              <li key={label}>
                 <a
-                  className="px-3 py-4 lg:py-2 flex items-center text-[#191F34] font-inter text-[14px] font-medium leading-[16px] hover:text-[#66cccc] transition"
-                  href={item.href}
-                  onClick={() => setIsMobile(false)}
+                  href={href}
+                  onClick={() => setIsMobileOpen(false)}
+                  className="block px-3 py-2 text-gray-900 font-medium text-base hover:text-[#66cccc] transition-colors"
                 >
-                  {item.label}
+                  {label}
                 </a>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Call to Action */}
-      <div className="hidden lg:flex items-center relative left-[-120px]">
-  <a
-    href="#Contact"
-    onClick={(e) => {
-      e.preventDefault();
-      setIsMobile(false);
-      const element = document.getElementById('Contact');
-      if (element) {
-        const yOffset = -80;
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    }}
-    className="text-white font-inter text-[14px] font-medium leading-[16px] 
-               w-[113px] h-[40px] flex-shrink-0 
-               rounded-[8px] border-[0.75px] border-[#DEE5ED] bg-[#3289FF] 
-               flex items-center justify-center 
-               hover:opacity-90 transition-all duration-150"
-  >
-    Book a call
-  </a>
-</div>
-
+        {/* Call to Action Button */}
+        <div className="hidden lg:flex">
+          <a
+            href="#Contact"
+            onClick={scrollToContact}
+            className="bg-[#3289FF] text-white px-5 py-2 rounded-md font-medium text-sm hover:opacity-90 transition"
+          >
+            {t('navbar.bookCall')}
+          </a>
+        </div>
       </div>
     </nav>
   );

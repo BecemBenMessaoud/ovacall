@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useTranslation } from 'react-i18next';
 import { BannerContainer } from './Process.styled';
 
 import Step1 from '../../assets/images/illustration3.webp';
@@ -11,48 +12,24 @@ import back1 from '../../assets/images/01.png';
 import back2 from '../../assets/images/02.png';
 import back3 from '../../assets/images/03.png';
 import back4 from '../../assets/images/04.png';
+import pathImage from '../../assets/images/path.png';
 
-const steps = [
-  {
-    title: 'Discovery & needs assessment',
-    description:
-      'We start by understanding your needs, challenges, and sales goals. In a free consultation, we’ll ask the right questions to learn about your market, your customers, and what success means to you. This lets us shape the ideal solution for your business..',
-    icon: Step1,
-    bgImage: back1,
-  },
-  {
-    title: 'Tailored team setup',
-    description:
-      'Based on your strategy, we hand-pick a team of trained agents who match your industry and brand. We brief and train them on your products, values, and CRM tools. Ovacall builds you a mini in-house team, working from our Tunisian hub. We also set clear KPIs and reporting metrics to match your goals, like lead conversion rates and customer satisfaction scores.',
-    icon: Step2,
-    bgImage: back2,
-  },
-  {
-    title: 'Easy integration',
-    description:
-      'Whether you are using your own CRM or ours, our team fits right into your daily workflow. We work closely with your systems and processes so it feels like we are part of your in-house team. The result? Consistent, high-quality service your customers can count on.',
-    icon: Step3,
-    bgImage: back3,
-  },
-  {
-    title: 'Long-term optimization',
-    description:
-      'We call, sell, and improve. We track key metrics and gather feedback to adjust and optimize our service based on your evolving needs.  .',
-    icon: Step4,
-    bgImage: back4,
-  },
-];
+const icons = [Step1, Step2, Step3, Step4];
+const backgrounds = [back1, back2, back3, back4];
 
 const Process = () => {
+  const { t } = useTranslation();
+  const steps = t("process.steps", { returnObjects: true });
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
   return (
-    <BannerContainer id="Process" className="relative bg-white py-20 px-4 md:px-10">
-      <div className="max-w-5xl mx-auto text-center mb-16">
+    <BannerContainer id="Process" className="relative bg-white py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 px-4 md:px-10 lg:px-20 xl:px-28 2xl:px-40">
+      <div className="max-w-5xl mx-auto text-center mb-16 md:mb-20 lg:mb-24">
         <span
-          className="inline-flex items-center justify-center text-sm font-semibold text-[#3289FF] uppercase"
+          className="inline-flex items-center justify-center text-sm md:text-base font-semibold text-[#3289FF] uppercase"
           style={{
             width: '142px',
             height: '40px',
@@ -60,7 +37,6 @@ const Process = () => {
             border: '0.75px solid rgba(50, 137, 255, 0.50)',
             background: '#E4EFFE',
             fontFamily: 'Inter',
-            fontSize: '16px',
             lineHeight: '20px',
           }}
         >
@@ -77,92 +53,86 @@ const Process = () => {
               fill="#3289FF"
             />
           </svg>
-          Process
+          {t("process.label")}
         </span>
         <h2
-          className="mt-4 mx-auto"
+          className="mt-6 md:mt-10 mx-auto text-3xl md:text-4xl lg:text-5xl font-semibold"
           style={{
             color: '#191F34',
             textAlign: 'center',
             fontFamily: 'Inter',
-            fontSize: '40px',
-            fontWeight: 600,
-            lineHeight: '48px',
-            width: '619px',
+            lineHeight: '1.2',
+            maxWidth: '620px',
           }}
         >
-          Our proven 4-steps approach <br /> to a successful partnership
+          {t("process.heading")}
         </h2>
       </div>
 
       <div className="relative max-w-6xl mx-auto">
-        {/* Vertical line with blue dots */}
-        <svg
-          className="absolute left-1/2 transform -translate-x-1/2 top-0 z-0"
-          width="132"
-          height="1506"
-          viewBox="0 0 132 1506"
-          fill="none"
-        >
-          <path
-            d="M47.5003 1C60.167 18.8333 83.9003 66.5 77.5003 114.5C69.5003 174.5 18.9999 262.5 30.9999 330.5C42.9999 398.5 110.5 425 128.5 463C146.5 501 -29.6404 522.838 7.49996 674C57.4998 877.5 35.6668 893.167 20.5 962C27.5 1132.5 -53.0001 1468.5 118.5 1504"
-            stroke="#3487F8"
-            strokeWidth="3"
-            strokeDasharray="10 10"
-          />
-        </svg>
+  <img
+  src={pathImage}
+  alt="process-line"
+  className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-10 z-0"
+  style={{
+    height: '2000px', // Adjust to your preference
+    maxHeight: '200vh',
+   
+    objectFit: 'contain',
+    pointerEvents: 'none',
+  }}
+/>
 
-        <div className="space-y-32 relative z-10">
+
+
+
+        <div className="space-y-16 md:space-y-20 relative z-10">
           {steps.map((step, index) => {
             const isReversed = index % 2 === 0;
             return (
               <div
                 key={index}
-                className={`relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 ${
+                className={`relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10 ${
                   isReversed ? 'md:flex-row-reverse' : ''
                 }`}
                 data-aos="fade-up"
               >
-                {/* Blue circle on the vertical line */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 -mt-2 z-20">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 22 22"
-                    fill="none"
-                  >
-                    <circle cx="11" cy="11" r="11" fill="#3F8EF7" />
-                  </svg>
-                </div>
-
-                {/* Icon */}
-                <div className="w-full md:w-1/2 flex justify-center">
+                <div
+                  className={`w-full md:w-1/2 flex justify-center ${
+                    isReversed ? 'md:ml-24 lg:ml-32 xl:ml-40 2xl:ml-48' : 'md:mr-24 lg:mr-32 xl:mr-40 2xl:mr-48'
+                  }`}
+                >
                   <img
-                    src={step.icon}
+                    src={icons[index]}
                     alt={`step-${index + 1}`}
-                    className="w-40 md:w-56 h-auto"
+                    className="w-36 sm:w-40 md:w-48 lg:w-56 xl:w-64 2xl:w-72 h-auto"
                   />
                 </div>
 
-                {/* Step content */}
                 <div
-                  className={`w-full md:w-1/2 text-center ${
+                  className={`w-full md:w-1/2 flex items-center justify-center text-center ${
                     isReversed ? 'md:text-left' : 'md:text-right'
                   }`}
                   style={{
-                    backgroundImage: `url(${step.bgImage})`,
+                    backgroundImage: `url(${backgrounds[index]})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    padding: '50px',
-                    borderRadius: '8px',
+                    padding: '30px 30px 40px',
+                    borderRadius: '20px',
                     color: 'black',
+                    minHeight: '280px',
+                    maxWidth: '520px',
+                    width: '100%',
                   }}
                 >
-                  <h3 className="text-xl md:text-2xl font-semibold mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-base leading-relaxed">{step.description}</p>
+                  <div className="max-w-md">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 md:mb-6">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm sm:text-base leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             );
