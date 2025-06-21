@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useTranslation } from 'react-i18next';
-import { BannerContainer } from './Process.styled';
+import styled from 'styled-components';
 
 import Step1 from '../../assets/images/illustration3.webp';
 import Step2 from '../../assets/images/illustration2.webp';
@@ -17,16 +17,28 @@ import pathImage from '../../assets/images/path.png';
 const icons = [Step1, Step2, Step3, Step4];
 const backgrounds = [back1, back2, back3, back4];
 
+const BannerContainer = styled.section`
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.52),
+    rgba(233, 233, 233, 0.73)
+  );
+  width: 100%;
+`;
+
 const Process = () => {
   const { t } = useTranslation();
-  const steps = t("process.steps", { returnObjects: true });
+  const steps = t('process.steps', { returnObjects: true });
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
   return (
-    <BannerContainer id="Process" className="relative bg-white py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 px-4 md:px-10 lg:px-20 xl:px-28 2xl:px-40">
+    <BannerContainer
+      id="Process"
+      className="relative bg-black py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 px-4 md:px-10 lg:px-20 xl:px-28 2xl:px-40"
+    >
       <div className="max-w-5xl mx-auto text-center mb-16 md:mb-20 lg:mb-24">
         <span
           className="inline-flex items-center justify-center text-sm md:text-base font-semibold text-[#3289FF] uppercase"
@@ -53,7 +65,7 @@ const Process = () => {
               fill="#3289FF"
             />
           </svg>
-          {t("process.label")}
+          {t('process.label')}
         </span>
         <h2
           className="mt-6 md:mt-10 mx-auto text-3xl md:text-4xl lg:text-5xl font-semibold"
@@ -65,26 +77,22 @@ const Process = () => {
             maxWidth: '620px',
           }}
         >
-          {t("process.heading")}
+          {t('process.heading')}
         </h2>
       </div>
 
       <div className="relative max-w-6xl mx-auto">
-  <img
-  src={pathImage}
-  alt="process-line"
-  className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-10 z-0"
-  style={{
-    height: '2000px', // Adjust to your preference
-    maxHeight: '200vh',
-   
-    objectFit: 'contain',
-    pointerEvents: 'none',
-  }}
-/>
-
-
-
+        <img
+          src={pathImage}
+          alt="process-line"
+          className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-10 z-0"
+          style={{
+            height: '2000px',
+            maxHeight: '200vh',
+            objectFit: 'contain',
+            pointerEvents: 'none',
+          }}
+        />
 
         <div className="space-y-16 md:space-y-20 relative z-10">
           {steps.map((step, index) => {
@@ -99,13 +107,15 @@ const Process = () => {
               >
                 <div
                   className={`w-full md:w-1/2 flex justify-center ${
-                    isReversed ? 'md:ml-24 lg:ml-32 xl:ml-40 2xl:ml-48' : 'md:mr-24 lg:mr-32 xl:mr-40 2xl:mr-48'
+                    isReversed
+                      ? 'md:ml-24 lg:ml-32 xl:ml-40 2xl:ml-48'
+                      : 'md:mr-24 lg:mr-32 xl:mr-40 2xl:mr-48'
                   }`}
                 >
                   <img
                     src={icons[index]}
                     alt={`step-${index + 1}`}
-                    className="w-36 sm:w-40 md:w-48 lg:w-56 xl:w-64 2xl:w-72 h-auto"
+                    className="w-80 sm:w-72 md:w-48 lg:w-56 xl:w-64 2xl:w-72 h-auto"
                   />
                 </div>
 

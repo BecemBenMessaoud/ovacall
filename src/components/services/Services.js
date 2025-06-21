@@ -4,13 +4,50 @@ import { useTranslation } from 'react-i18next';
 import Phone from '../../assets/images/asset1.webp';
 import Phone2 from '../../assets/images/Asset 2.png';
 import Phone3 from '../../assets/images/Asset 3.png';
-import Phone4 from '../../assets/images/asset4.webp';
+import Phone4 from '../../assets/images/asset4.webp'; // Your real images
 import { BannerContainer } from './Services.styled';
+
+const NumberCircle = ({ number }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="28"
+    height="28"
+    viewBox="0 0 28 28"
+    fill="none"
+    className="mr-3 flex-shrink-0"
+  >
+    <circle cx="14" cy="14" r="14" fill="#191F34" />
+    <text
+      x="50%"
+      y="50%"
+      fill="white"
+      fontSize="16"
+      fontWeight="600"
+      fontFamily="Inter, sans-serif"
+      dominantBaseline="middle"
+      textAnchor="middle"
+    >
+      {number}
+    </text>
+  </svg>
+);
 
 const Services = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(0);
 
+  // Detect mobile with window width
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    function checkMobile() {
+      setIsMobile(window.innerWidth < 768); // Tailwind md breakpoint
+    }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Tabs data with keys for i18n
   const TABS = [
     {
       titleKey: 'services.tabs.operationalCosts.title',
@@ -48,20 +85,7 @@ const Services = () => {
 
   return (
     <BannerContainer id="Services" className="bg-white py-16">
-      <div className="
-        mx-auto
-        px-4
-        sm:px-6
-        md:px-8
-        lg:px-12
-        xl:px-20
-        2xl:px-32
-        max-w-full
-        md:max-w-5xl
-        lg:max-w-6xl
-        xl:max-w-7xl
-        2xl:max-w-8xl
-      ">
+      <div className="max-w-6xl mx-auto px-4">
         <a
           href="#"
           className="inline-flex items-center mb-3 px-4 py-1 text-[16px] font-semibold font-inter text-[#3289FF] uppercase leading-[20px] tracking-normal border border-blue-500/50 rounded-full bg-[#E4EFFE] hover:bg-blue-200 transition"
@@ -95,96 +119,169 @@ const Services = () => {
         </a>
 
         <h2
-          className="mb-10 max-w-full md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
+          className="mb-10"
           style={{
             color: '#191F34',
             fontFamily: 'Inter, sans-serif',
             fontSize: '40px',
             fontWeight: 600,
             lineHeight: '48px',
+            maxWidth: '673px',
           }}
         >
           {t('services.heading')}
         </h2>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-around border-b mb-8 gap-4 md:gap-8">
-          {TABS.map((tab, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveTab(index)}
-              className="flex flex-col items-center px-4 py-2 focus:outline-none"
-              style={{ flexShrink: 0 }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 28 28"
-                fill="none"
-                className="mb-1 flex-shrink-0"
-              >
-                <circle cx="14" cy="14" r="14" fill="#191F34" />
-                <text
-                  x="50%"
-                  y="50%"
-                  fill="white"
-                  fontSize="16"
-                  fontWeight="600"
-                  fontFamily="Inter, sans-serif"
-                  dominantBaseline="middle"
-                  textAnchor="middle"
+        {/* Desktop Tabs */}
+        {!isMobile && (
+          <>
+            <div className="flex justify-around border-b mb-8">
+              {TABS.map((tab, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveTab(index)}
+                  className="flex flex-col items-center px-4 py-2 focus:outline-none"
+                  style={{ flexShrink: 0 }}
                 >
-                  {index + 1}
-                </text>
-              </svg>
+                  {/* Black circle with number */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    className="mb-1 flex-shrink-0"
+                  >
+                    <circle cx="14" cy="14" r="14" fill="#191F34" />
+                    <text
+                      x="50%"
+                      y="50%"
+                      fill="white"
+                      fontSize="16"
+                      fontWeight="600"
+                      fontFamily="Inter, sans-serif"
+                      dominantBaseline="middle"
+                      textAnchor="middle"
+                    >
+                      {index + 1}
+                    </text>
+                  </svg>
 
-              <span
+                  {/* Tab title */}
+                  <span
+                    style={{
+                      color: activeTab === index ? '#191F34' : '#556680',
+                      textAlign: 'center',
+                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '16px',
+                      fontWeight: 600,
+                      lineHeight: '24px',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {t(tab.titleKey)}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* Content */}
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3
+                  style={{
+                    color: '#191F34',
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '24px',
+                    fontWeight: 600,
+                    lineHeight: '32px',
+                    width: '365px',
+                  }}
+                  className="mb-4"
+                >
+                  {t(TABS[activeTab].content.headingKey)}
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  {t(TABS[activeTab].content.descriptionKey)}
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <img
+                  src={TABS[activeTab].content.image}
+                  alt={t(TABS[activeTab].content.headingKey)}
+                  className="w-full max-w-md"
+                />
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Mobile all expanded vertically */}
+        {isMobile && (
+          <div className="flex flex-col">
+            {TABS.map((tab, index) => (
+              <div
+                key={index}
                 style={{
-                  color: activeTab === index ? '#191F34' : '#556680',
-                  textAlign: 'center',
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: '16px',
-                  fontWeight: 600,
-                  lineHeight: '24px',
-                  whiteSpace: 'nowrap',
+                  borderBottom: index !== TABS.length - 1 ? '1px solid #E0E0E0' : 'none',
+                  paddingBottom: '1.5rem',
+                  marginBottom: '1.5rem',
                 }}
               >
-                {t(tab.titleKey)}
-              </span>
-            </button>
-          ))}
-        </div>
+                <div className="flex items-center mb-2">
+                  <NumberCircle number={index + 1} />
+                  <h4
+                    style={{
+                      color: '#556680',
+                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '18px',
+                      fontWeight: 600,
+                      lineHeight: '22px',
+                      margin: 0,
+                    }}
+                  >
+                    {t(tab.titleKey)}
+                  </h4>
+                </div>
 
-        {/* Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h3
-              className="mb-4"
-              style={{
-                color: '#191F34',
-                fontFamily: 'Inter, sans-serif',
-                fontSize: '24px',
-                fontWeight: 600,
-                lineHeight: '32px',
-                maxWidth: '365px',
-              }}
-            >
-              {t(TABS[activeTab].content.headingKey)}
-            </h3>
-            <p className="text-gray-700 leading-relaxed max-w-lg">
-              {t(TABS[activeTab].content.descriptionKey)}
-            </p>
+                <h3
+                  style={{
+                    color: '#191F34',
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '24px',
+                    fontWeight: 600,
+                    lineHeight: '32px',
+                    marginBottom: '1rem',
+                    maxWidth: '365px',
+                  }}
+                >
+                  {t(tab.content.headingKey)}
+                </h3>
+
+                <p
+                  style={{
+                    color: '#556680',
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '18px',
+                    fontWeight: 400,
+                    lineHeight: '26px',
+                    maxWidth: '560px',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  {t(tab.content.descriptionKey)}
+                </p>
+
+                <img
+                  src={tab.content.image}
+                  alt={t(tab.content.headingKey)}
+                  className="w-full max-w-md mx-auto"
+                  style={{ borderRadius: '8px' }}
+                />
+              </div>
+            ))}
           </div>
-          <div className="flex justify-center">
-            <img
-              src={TABS[activeTab].content.image}
-              alt={t(TABS[activeTab].content.headingKey)}
-              className="w-full max-w-md object-contain"
-              style={{ maxHeight: '400px' }}
-            />
-          </div>
-        </div>
+        )}
       </div>
     </BannerContainer>
   );

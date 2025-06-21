@@ -40,8 +40,8 @@ const Contactus = () => {
   return (
     <div
       id="Contact"
-      className="relative flex items-center justify-center min-h-screen bg-[#191F34] bg-cover bg-center 
-                 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24"
+      className="relative flex items-center justify-center min-h-screen bg-[#191F34] bg-cover bg-center
+                   px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40 py-12 sm:py-16 md:py-20 lg:py-24" // Increased padding
       style={{ backgroundImage: `url(${unionBg})` }}
     >
       {showCalendar && (
@@ -52,36 +52,36 @@ const Contactus = () => {
       )}
 
       <div
-        className="w-full max-w-7xl mx-auto py-8 sm:py-12 
-                   grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 
-                   items-center"
+        className="w-full max-w-screen-xl mx-auto py-10 sm:py-5
+                    grid gap-0 sm:gap-10 md:grid-cols-2 md:gap-4 lg:gap-16 xl:gap-20 2xl:gap-24
+                    items-start"
         data-aos="fade-up"
       >
         {/* Left Side - Info Section */}
-        <div className="space-y-6 md:space-y-8 z-50 relative order-2 md:order-1">
+        <div className="space-y-8 md:space-y-10 z-50 relative order-2 md:order-1"> {/* Increased space-y */}
           <a
-            className="inline-flex items-center gap-2 bg-white text-primary font-semibold 
-                       px-3 py-2 sm:px-4 sm:py-2 rounded-full shadow hover:bg-gray-100 transition
-                       text-sm sm:text-base"
+            className="inline-flex items-center gap-2 bg-white text-primary font-semibold
+                        px-4 py-2 sm:px-5 sm:py-2.5 rounded-full shadow hover:bg-gray-100 transition
+                        text-sm sm:text-base" // Slightly increased padding and sizes
             style={{
               width: 'auto',
-              minWidth: '120px',
-              maxWidth: '145px',
-              height: '36px',
+              minWidth: '50px', // Slightly wider
+              maxWidth: '160px', // Slightly wider
+              height: '40px', // Taller
               flexShrink: 0,
               borderRadius: '24px',
               border: '0.75px solid rgba(50, 137, 255, 0.5)',
               background: '#E4EFFE',
               color: '#3289FF',
               fontFamily: 'Inter',
-              fontSize: 'clamp(14px, 2vw, 16px)',
+              fontSize: 'clamp(14px, 2vw, 17px)', // Slightly larger font
               fontWeight: 600,
               lineHeight: '20px',
               textTransform: 'uppercase',
               textDecoration: 'none',
             }}
           >
-            <span className="w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] flex-shrink-0">
+            <span className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] flex-shrink-0"> {/* Larger icon */}
               {/* Contact SVG */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -103,18 +103,18 @@ const Contactus = () => {
             <span className="hidden sm:inline">{t('contact')}</span>
           </a>
 
-          <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 
-                         font-bold text-white leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-5xl
+                          font-bold text-white leading-tight"> {/* Reverted heading size to more standard large sizes */}
             {t('contact_heading')}
           </h1>
 
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-6 sm:space-y-8"> {/* Increased space-y */}
             {/* Email */}
-            <div className="flex items-start gap-3 sm:gap-4">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="flex items-start gap-4 sm:gap-5"> {/* Increased gap */}
+              <div className="w-9 h-9 sm:w-11 sm:h-11 bg-white rounded-full flex items-center justify-center flex-shrink-0"> {/* Larger icon circle */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 sm:w-5 sm:h-5 text-primary"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-primary" // Larger icon
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -128,21 +128,21 @@ const Contactus = () => {
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-xs sm:text-xs text-gray-300 font-semibold uppercase mb-1">
+                <p className="text-sm sm:text-base text-gray-300 font-semibold uppercase mb-1.5"> {/* Adjusted text size and margin */}
                   {t('email')}
                 </p>
-                <p className="text-sm sm:text-base text-white break-words">
+                <p className="text-base sm:text-lg text-white break-words"> {/* Larger text */}
                   contact@ovacall.com
                 </p>
               </div>
             </div>
 
             {/* Call Us */}
-            <div className="flex items-start gap-3 sm:gap-4">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="flex items-start gap-4 sm:gap-5"> {/* Increased gap */}
+              <div className="w-9 h-9 sm:w-11 sm:h-11 bg-white rounded-full flex items-center justify-center flex-shrink-0"> {/* Larger icon circle */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 sm:w-5 sm:h-5 text-primary"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-primary" // Larger icon
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -156,23 +156,23 @@ const Contactus = () => {
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-xs sm:text-xs text-gray-300 font-semibold uppercase mb-1">
+                <p className="text-sm sm:text-base text-gray-300 font-semibold uppercase mb-1.5"> {/* Adjusted text size and margin */}
                   {t('call_us')}
                 </p>
-                <div className="space-y-1">
-                  <p className="text-sm sm:text-base text-white break-words">+216 ********</p>
-                  <p className="text-sm sm:text-base text-white break-words">+33 ********</p>
-                  <p className="text-sm sm:text-base text-white break-words">+49 ********</p>
+                <div className="space-y-1.5"> {/* Adjusted space-y */}
+                  <p className="text-base sm:text-lg text-white break-words">+216 ********</p> {/* Larger text */}
+                  <p className="text-base sm:text-lg text-white break-words">+33 ********</p> {/* Larger text */}
+                  <p className="text-base sm:text-lg text-white break-words">+49 ********</p> {/* Larger text */}
                 </div>
               </div>
             </div>
 
             {/* Address */}
-            <div className="flex items-start gap-3 sm:gap-4">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="flex items-start gap-4 sm:gap-5"> {/* Increased gap */}
+              <div className="w-9 h-9 sm:w-11 sm:h-11 bg-white rounded-full flex items-center justify-center flex-shrink-0"> {/* Larger icon circle */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 sm:w-5 sm:h-5 text-primary"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-primary" // Larger icon
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -192,10 +192,10 @@ const Contactus = () => {
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-xs sm:text-xs text-gray-300 font-semibold uppercase mb-1">
+                <p className="text-sm sm:text-base text-gray-300 font-semibold uppercase mb-1.5"> {/* Adjusted text size and margin */}
                   {t('address')}
                 </p>
-                <p className="text-sm sm:text-base text-white break-words">
+                <p className="text-base sm:text-lg text-white break-words"> {/* Larger text */}
                   {t('address_full')}
                 </p>
               </div>
@@ -203,8 +203,8 @@ const Contactus = () => {
           </div>
 
           {confirmedDate && (
-            <div className="mt-4 p-3 bg-white/10 rounded-lg backdrop-blur-sm">
-              <p className="text-white font-semibold text-sm sm:text-base">
+            <div className="mt-6 p-4 bg-white/10 rounded-lg backdrop-blur-sm"> {/* Increased margin and padding */}
+              <p className="text-white font-semibold text-base sm:text-lg"> {/* Larger text */}
                 {t('selected_date')}: {confirmedDate.toDateString()}
               </p>
             </div>
@@ -212,31 +212,25 @@ const Contactus = () => {
         </div>
 
         {/* Right Side - Form Section */}
-        <div className="bg-white shadow-lg rounded-xl p-4 sm:p-6 md:p-6 lg:p-8 xl:p-8 2xl:p-10 
-                        w-full z-50 relative max-w-full order-1 md:order-2">
+        <div className="bg-white shadow-lg rounded-xl p-6 sm:p-8 md:p-8 lg:p-10 xl:p-10 2xl:p-12
+                          w-full z-20 relative max-w-full order-1 md:order-2"> {/* Increased padding */}
           {submitted ? (
-            <div className="text-center px-2 sm:px-4 md:px-6 lg:px-8">
-              <h1 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl 
-                          ">
+            <div className="text-center px-4 sm:px-6 md:px-8 lg:px-10"> {/* Increased padding */}
+              <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl
+                               text-gray-900 font-extrabold mb-3 sm:mb-5"> {/* Increased heading size and margin */}
                 {t('thank_you')}
               </h1>
-              <p className="text-sm sm:text-base md:text-base lg:text-lg text-gray-700">
+              <p className="text-base sm:text-lg md:text-lg lg:text-xl text-gray-700"> {/* Larger text */}
                 {t('we_will_contact')}
               </p>
             </div>
           ) : (
-            <div className="mt-4 sm:mt-6 md:mt-8">
+            <div className="space-y-0 md:space-y-1 z-5 relative order-2 md:order-1 sm:mt-2 md:mt-0"> {/* Increased margin */}
               {i18n.language === 'fr' ? (
                 <iframe
                   id="ovacall-en-sy9yow"
                   src="https://opnform.com/forms/ovacall-en-sy9yow"
-                  style={{
-                    border: 'none',
-                    width: '100%',
-                    height: 'clamp(400px, 50vh, 600px)',
-                    maxHeight: '80vh',
-                    minHeight: '350px',
-                  }}
+
                   title="Form FR"
                 />
               ) : (
@@ -246,9 +240,9 @@ const Contactus = () => {
                   style={{
                     border: 'none',
                     width: '100%',
-                    height: 'clamp(400px, 50vh, 600px)',
-                    maxHeight: '80vh',
-                    minHeight: '350px',
+                    height: 'auto',
+                    minHeight: '700px', // Increased minHeight for the iframe
+                    display: 'block',
                   }}
                   title="Form EN"
                 />
@@ -261,13 +255,13 @@ const Contactus = () => {
       {/* Calendar Modal */}
       {showCalendar && (
         <div
-          className="fixed top-4 sm:top-10 md:top-20 left-1/2 transform -translate-x-1/2 
-                     bg-white rounded-xl shadow-2xl p-4 sm:p-6 
-                     max-w-xs sm:max-w-sm md:max-w-md w-[90%] sm:w-full z-50"
+          className="fixed top-0 sm:top-10 md:top-20 left-1/2 transform -translate-x-1/2
+                       bg-white rounded-xl shadow-2xl p-6 sm:p-8
+                       max-w-sm sm:max-w-md md:max-w-lg w-[95%] sm:w-full z-50" // Increased max-width and padding
           onClick={(e) => e.stopPropagation()}
         >
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 
-                         text-center text-gray-800">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5
+                           text-center text-gray-800"> {/* Larger heading and margin */}
             {t('select_date')}
           </h2>
           <div className="calendar-container">
@@ -278,24 +272,24 @@ const Contactus = () => {
               className="react-calendar w-full"
             />
           </div>
-          <p className="mt-3 sm:mt-4 text-center text-gray-600 font-medium text-sm sm:text-base">
-            {t('selected_date')}: 
-            <span className="text-blue-600 block sm:inline sm:ml-1">
+          <p className="mt-4 sm:mt-5 text-center text-gray-600 font-medium text-base sm:text-lg"> {/* Larger text and margin */}
+            {t('selected_date')}:
+            <span className="text-blue-600 block sm:inline sm:ml-2"> {/* Increased margin-left for inline */}
               {date.toDateString()}
             </span>
           </p>
-          <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-between gap-3 sm:gap-4">
+          <div className="mt-5 sm:mt-7 flex flex-col sm:flex-row justify-between gap-4 sm:gap-5"> {/* Increased margins and gaps */}
             <button
               onClick={() => setShowCalendar(false)}
-              className="flex-1 bg-gray-300 text-gray-800 py-2 sm:py-3 rounded-lg 
-                         hover:bg-gray-400 transition font-semibold text-sm sm:text-base"
+              className="flex-1 bg-gray-300 text-gray-800 py-2.5 sm:py-3.5 rounded-lg
+                          hover:bg-gray-400 transition font-semibold text-base sm:text-lg" // Increased padding and text size
             >
               {t('close')}
             </button>
             <button
               onClick={handleConfirmDate}
-              className="flex-1 bg-blue-600 text-white py-2 sm:py-3 rounded-lg 
-                         hover:bg-blue-700 transition font-semibold text-sm sm:text-base"
+              className="flex-1 bg-blue-600 text-white py-2.5 sm:py-3.5 rounded-lg
+                          hover:bg-blue-700 transition font-semibold text-base sm:text-lg" // Increased padding and text size
             >
               {t('confirm')}
             </button>
