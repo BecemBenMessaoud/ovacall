@@ -104,7 +104,7 @@ const Contactus = () => {
           </a>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-5xl
-                          font-bold text-white leading-tight"> {/* Reverted heading size to more standard large sizes */}
+                          font-bold text-white leading-tight">
             {t('contact_heading')}
           </h1>
 
@@ -136,7 +136,6 @@ const Contactus = () => {
                 </p>
               </div>
             </div>
-
             {/* Call Us */}
             <div className="flex items-start gap-4 sm:gap-5"> {/* Increased gap */}
               <div className="w-9 h-9 sm:w-11 sm:h-11 bg-white rounded-full flex items-center justify-center flex-shrink-0"> {/* Larger icon circle */}
@@ -166,7 +165,6 @@ const Contactus = () => {
                 </div>
               </div>
             </div>
-
             {/* Address */}
             <div className="flex items-start gap-4 sm:gap-5"> {/* Increased gap */}
               <div className="w-9 h-9 sm:w-11 sm:h-11 bg-white rounded-full flex items-center justify-center flex-shrink-0"> {/* Larger icon circle */}
@@ -214,41 +212,48 @@ const Contactus = () => {
         {/* Right Side - Form Section */}
         <div className="bg-white shadow-lg rounded-xl p-6 sm:p-8 md:p-8 lg:p-10 xl:p-10 2xl:p-12
                           w-full z-20 relative max-w-full order-1 md:order-2"> {/* Increased padding */}
-          {submitted ? (
-            <div className="text-center px-4 sm:px-6 md:px-8 lg:px-10"> {/* Increased padding */}
-              <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl
-                               text-gray-900 font-extrabold mb-3 sm:mb-5"> {/* Increased heading size and margin */}
-                {t('thank_you')}
-              </h1>
-              <p className="text-base sm:text-lg md:text-lg lg:text-xl text-gray-700"> {/* Larger text */}
-                {t('we_will_contact')}
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-0 md:space-y-1 z-5 relative order-2 md:order-1 sm:mt-2 md:mt-0"> {/* Increased margin */}
-              {i18n.language === 'fr' ? (
-                <iframe
-                  id="ovacall-en-sy9yow"
-                  src="https://opnform.com/forms/ovacall-en-sy9yow"
+   {submitted ? (
+  <div className="text-center px-4 sm:px-6 md:px-8 lg:px-10">
+    <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl text-gray-900 font-extrabold mb-3 sm:mb-5">
+      {t('thank_you')}
+    </h1>
+    <p className="text-base sm:text-lg md:text-lg lg:text-xl text-gray-700">
+      {t('we_will_contact')}
+    </p>
+  </div>
+) : (
+  <div className="space-y-0 md:space-y-1 z-5 relative order-2 md:order-1 sm:mt-2 md:mt-0">
+    {i18n.language === 'fr' ? (
+      <iframe
+        id="ovacall-en-sy9yow"
+        src="https://opnform.com/forms/ovacall-en-sy9yow"
+        style={{
+          border: 'none',
+          width: '100%',
+          height: 'auto',
+          minHeight: '700px',
+          display: 'block',
+        }}
+        title="Form FR"
+      />
+    ) : (
+      <iframe
+        id="my-form-nf0mij"
+        src="https://opnform.com/forms/my-form-nf0mij"
+        style={{
+          border: 'none',
+          width: '100%',  // Ensure iframe is fully responsive
+          height: 'auto',
+          minHeight: '700px',
+          display: 'block',
+        }}
+        title="Form EN"
+      />
+    )}
+  </div>
+)}
 
-                  title="Form FR"
-                />
-              ) : (
-                <iframe
-                  id="my-form-nf0mij"
-                  src="https://opnform.com/forms/my-form-nf0mij"
-                  style={{
-                    border: 'none',
-                    width: '100%',
-                    height: 'auto',
-                    minHeight: '700px', // Increased minHeight for the iframe
-                    display: 'block',
-                  }}
-                  title="Form EN"
-                />
-              )}
-            </div>
-          )}
+
         </div>
       </div>
 

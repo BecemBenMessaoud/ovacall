@@ -9,7 +9,7 @@ const resources = {
       Services: "Services",
       Process: "Process",
       AboutUs: "About us",
-      Onboarding: "Onboarding",
+      OnBoarding: "OnBoarding",
       Contact: "Contact",
       Blog: "Blog",
       English: "English",
@@ -38,7 +38,7 @@ const resources = {
         }
       },
       // Aboutus translations
-      aboutUsButton: 'About Us',
+      aboutUsButton: 'ABOUT US',
       teamTitle: 'The team behind Ovacall',
       aboutUsParagraph: 'At Ovacall, we go beyond traditional call center services. we combine advanced expertise with genuine empathy to create customer experiences that go beyond answering calls. We become an integral part of your business, understanding your values and goals to deliver personalized support that builds lasting relationships.',
       teamMembers: {
@@ -279,7 +279,7 @@ navbar: {
       schedule_consultation: "Planifier une consultation gratuite",
 
       // Onboarding translations
-      onboarding: {
+      OnBoarding: {
         title: "Intégration",
         subtitle: "Comment démarrer",
         step1: {

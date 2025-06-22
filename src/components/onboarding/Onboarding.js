@@ -16,13 +16,28 @@ const OnBoarding = () => {
     <AttoUsContainer id="OnBoarding" className="bg-[#a09192] py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-28">
       <div className="bg-[#F6F9FC] px-6 md:px-12 lg:px-20 xl:px-32 2xl:px-40">
         <div className="max-w-6xl mx-auto">
+
           {/* Top Heading */}
           <a
             href="#"
-            className="inline-block mb-4 px-5 py-2 text-base md:text-lg font-semibold text-blue-600 bg-blue-100 rounded-full hover:bg-blue-200 transition"
+            className="inline-flex items-center gap-2 mb-4 px-5 py-2 text-base md:text-lg font-semibold text-blue-600 bg-blue-100 rounded-full hover:bg-blue-200 transition"
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              className="flex-shrink-0"
+            >
+              <path
+                d="M14.9257 8.93341H12.3507V2.93341C12.3507 1.53341 11.5924 1.25008 10.6674 2.30008L10.0007 3.05841L4.35908 9.47508C3.58408 10.3501 3.90908 11.0667 5.07574 11.0667H7.65074V17.0667C7.65074 18.4667 8.40907 18.7501 9.33407 17.7001L10.0007 16.9417L15.6424 10.5251C16.4174 9.65008 16.0924 8.93341 14.9257 8.93341Z"
+                fill="#3289FF"
+              />
+            </svg>
             {t('onboarding.title')}
           </a>
+
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1c1c1c] mb-8">
             {t('onboarding.subtitle')}
           </h2>

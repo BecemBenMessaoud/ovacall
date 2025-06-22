@@ -12,6 +12,7 @@ import {
   FooterBottom,
   SettingsWrapper,
   SettingOption,
+  LanguageAndDarkModeWrapper,
   SocialIcons,
   SocialIcon,
 } from './Footer.styled';
@@ -78,104 +79,107 @@ const Footer = () => {
               <LinkColumn>
                 <FooterLink href="#Contact">{t('Contact')}</FooterLink>
               </LinkColumn>
-              
             </LinksRow>
 
             <SettingsWrapper>
-              <SettingOption
-                ref={dropdownRef}
-                style={{ position: 'relative', cursor: 'pointer' }}
-                aria-haspopup="listbox"
-                aria-expanded={isOpen}
-              >
-                {/* Selected language */}
-                <div
-                  onClick={() => setIsOpen((prev) => !prev)}
-                  style={{ display: 'flex', alignItems: 'center', gap: 8 }}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') setIsOpen((prev) => !prev);
-                  }}
-                  aria-label={t('SelectLanguage', 'Select Language')}
+              {/* Container pour le mode sombre et la langue */}
+              <LanguageAndDarkModeWrapper>
+                <SettingOption
+                  ref={dropdownRef}
+                  style={{ position: 'relative', cursor: 'pointer' }}
+                  aria-haspopup="listbox"
+                  aria-expanded={isOpen}
                 >
-                  <img
-                    src={currentLang.img}
-                    alt={`${currentLang.label} flag`}
-                    style={{ width: 24, height: 16, objectFit: 'cover' }}
-                  />
-                  <span>{currentLang.label}</span>
-                  <span style={{ marginLeft: 4 }}>{isOpen ? '▲' : '▼'}</span>
-                </div>
-
-                {/* Dropdown list */}
-                {isOpen && (
-                  <ul
-                    role="listbox"
-                    tabIndex={-1}
-                    style={{
-                      position: 'absolute',
-                      top: 'calc(100% + 4px)',
-                      left: 0,
-                      background: '#fff',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-                      borderRadius: 4,
-                      padding: '4px 0',
-                      margin: 0,
-                      listStyle: 'none',
-                      zIndex: 1000,
-                      width: 120,
+                  {/* Sélecteur de langue */}
+                  <div
+                    onClick={() => setIsOpen((prev) => !prev)}
+                    style={{ display: 'flex', alignItems: 'center', gap: 8 }}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') setIsOpen((prev) => !prev);
                     }}
+                    aria-label={t('SelectLanguage', 'Select Language')}
                   >
-                    {languages.map(({ code, label, img }) => (
-                      <li
-                        key={code}
-                        role="option"
-                        aria-selected={selectedLang === code}
-                        onClick={() => changeLanguage(code)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') changeLanguage(code);
-                        }}
-                        tabIndex={0}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 8,
-                          padding: '6px 12px',
-                          cursor: 'pointer',
-                          backgroundColor: selectedLang === code ? '#eee' : 'transparent',
-                        }}
-                      >
-                        <img
-                          src={img}
-                          alt={`${label} flag`}
-                          style={{ width: 24, height: 16, objectFit: 'cover' }}
-                        />
-                        <span>{label}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </SettingOption>
+                    <img
+                      src={currentLang.img}
+                      alt={`${currentLang.label} flag`}
+                      style={{ width: 24, height: 16, objectFit: 'cover' }}
+                    />
+                    <span>{currentLang.label}</span>
+                    <span style={{ marginLeft: 4 }}>{isOpen ? '▲' : '▼'}</span>
+                  </div>
 
-              <SettingOption>
-                <button
-                  type="button"
-                  onClick={() => alert('Dark mode toggle clicked')}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    color: 'inherit',
-                    fontSize: 14,
-                    fontFamily: 'inherit',
-                    padding: 0,
-                  }}
-                  aria-label={t('ToggleDarkMode', 'Toggle dark mode')}
-                >
-                  {t('DarkMode')}
-                </button>
-              </SettingOption>
+                  {/* Liste déroulante de langue */}
+                  {isOpen && (
+                    <ul
+                      role="listbox"
+                      tabIndex={-1}
+                      style={{
+                        position: 'absolute',
+                        top: 'calc(100% + 4px)',
+                        left: 0,
+                        background: '#fff',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                        borderRadius: 4,
+                        padding: '4px 0',
+                        margin: 0,
+                        listStyle: 'none',
+                        zIndex: 1000,
+                        width: 120,
+                      }}
+                    >
+                      {languages.map(({ code, label, img }) => (
+                        <li
+                          key={code}
+                          role="option"
+                          aria-selected={selectedLang === code}
+                          onClick={() => changeLanguage(code)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') changeLanguage(code);
+                          }}
+                          tabIndex={0}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 8,
+                            padding: '6px 12px',
+                            cursor: 'pointer',
+                            backgroundColor: selectedLang === code ? '#eee' : 'transparent',
+                          }}
+                        >
+                          <img
+                            src={img}
+                            alt={`${label} flag`}
+                            style={{ width: 24, height: 16, objectFit: 'cover' }}
+                          />
+                          <span>{label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </SettingOption>
+
+                {/* Mode sombre */}
+                <SettingOption>
+                  <button
+                    type="button"
+                    onClick={() => alert('Dark mode toggle clicked')}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      color: 'inherit',
+                      fontSize: 14,
+                      fontFamily: 'inherit',
+                      padding: 0,
+                    }}
+                    aria-label={t('ToggleDarkMode', 'Toggle dark mode')}
+                  >
+                    {t('DarkMode')}
+                  </button>
+                </SettingOption>
+              </LanguageAndDarkModeWrapper>
             </SettingsWrapper>
           </NavWrapper>
         </MainContentWrapper>

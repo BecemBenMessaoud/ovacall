@@ -12,6 +12,7 @@ export const FooterContent = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const MainContentWrapper = styled.div`
@@ -19,11 +20,16 @@ export const MainContentWrapper = styled.div`
   align-items: center;
   margin-bottom: 40px;
   gap: 40px;
+  justify-content: center;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 30px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 10px;
   }
 `;
 
@@ -32,17 +38,23 @@ export const LogoContainer = styled.div`
     height: 40px;
     width: auto;
   }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const NavWrapper = styled.div`
   display: flex;
   flex-grow: 1;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
     width: 100%;
   }
@@ -52,14 +64,12 @@ export const LinksRow = styled.div`
   display: flex;
   gap: 40px;
   align-items: center;
-
-  @media (max-width: 1024px) {
-    gap: 30px;
-  }
+  justify-content: center;
 
   @media (max-width: 768px) {
-    flex-wrap: wrap;
-    gap: 20px 30px;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
   }
 `;
 
@@ -67,20 +77,46 @@ export const SettingsWrapper = styled.div`
   display: flex;
   gap: 25px;
   align-items: center;
-  margin-left: auto;
+  justify-content: center;
 
   @media (max-width: 768px) {
-    margin-left: 0;
-    margin-top: 15px;
-    width: 100%;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
   }
 `;
 
-export const FlagIcon = styled.img`
-  width: 20px;
-  height: auto;
-  margin-right: 8px;
+export const LanguageAndDarkModeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  @media (min-width: 769px) {
+    margin-left: 40px; /* ✅ Décalé un peu à droite sur PC */
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* ✅ Empilé sur mobile */
+    gap: 15px;
+    align-items: center;
+    margin-left: 0;
+  }
+`;
+
+export const SettingOption = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+
+  &:hover {
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const LinkColumn = styled.div`
@@ -103,7 +139,7 @@ export const FooterLink = styled.a`
 
 export const FooterBottom = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding-top: 20px;
   border-top: 1px solid #e1e1e1;
@@ -111,27 +147,13 @@ export const FooterBottom = styled.div`
   color: #999;
   width: 100%;
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
   }
 `;
-
-export const SettingOption = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: #666;
-  cursor: pointer;
-
-  &:hover {
-    color: #333;
-  }
-`;
-// ... (keep all previous styled components)
-
-
 
 export const SocialIcons = styled.div`
   display: flex;
@@ -153,4 +175,10 @@ export const SocialIcon = styled.img`
     width: 18px;
     height: 18px;
   }
+`;
+
+export const FlagIcon = styled.img`
+  width: 20px;
+  height: auto;
+  margin-right: 8px;
 `;
